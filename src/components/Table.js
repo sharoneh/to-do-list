@@ -4,8 +4,7 @@ import Head from '@material-ui/core/TableHead';
 import Body from '@material-ui/core/TableBody';
 import Cell from '@material-ui/core/TableCell';
 import Row from '@material-ui/core/TableRow';
-import ClearIcon from '@material-ui/icons/Clear';
-import Fab from '@material-ui/core/Fab';
+import Task from './Task';
 
 const TableComponent = () => {
   return (
@@ -20,28 +19,14 @@ const TableComponent = () => {
       </Head>
 
       <Body>
-        <Row>
-          <Cell style={styles.firstBodyCell}>
-            <Fab
-              size="small"
-              style={styles.closeBtn}
-            >
-              <ClearIcon />
-            </Fab>
-          </Cell>
-          <Cell>fazer portfolio</Cell>
-          <Cell>{new Date().toLocaleDateString('pt-BR')} - {new Date().toLocaleTimeString('pt-BR')}</Cell>
-          <Cell>São Paulo</Cell>
-        </Row>
+        <Task>fazer portfolio</Task>
       </Body>
     </Table>
   )
 }
 
 const styles = {
-  firstHeadCell: { padding: 0 },
-  firstBodyCell: { padding: 4 },
-  closeBtn: { transform: 'scale(.5)' }
+  firstHeadCell: { padding: 0 }
 }
 
 export default TableComponent

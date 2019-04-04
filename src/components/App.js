@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Table from './Table';
+import TaskInput from './TaskInput';
 
 class App extends Component {
   render() {
@@ -22,18 +20,7 @@ class App extends Component {
               style={styles.h1}
             >to do list</Typography>
   
-            <div style={styles.input}>
-              <Input style={styles.textInput}/>
-    
-              <Fab
-                color="primary"
-                aria-label="Add"
-                size="small"
-                style={styles.fab}
-              >
-                <AddIcon />
-              </Fab>
-            </div>
+            <TaskInput />
 
             <Table />
           </Paper>
@@ -69,13 +56,7 @@ const styles = {
   h1: {
     fontSize: 40,
     fontWeight: 200,
-  },
-  input: { display: 'flex' },
-  textInput: {
-    width: '100%',
-    marginRight: 30
-  },
-  fab: { flexShrink: 0 }
+  }
 }
 
 export default App;
