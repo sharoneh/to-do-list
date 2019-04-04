@@ -2,17 +2,27 @@ import React from 'react';
 import Input from '@material-ui/core/Input';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { addTask, onInputChange } from '../redux/AppReducer';
+import { connect } from 'react-redux';
 
-const TaskInput = () => {
+const TaskInput = ({ addTask, inputValue, onInputChange }) => {
   return (
     <div style={styles.container}>
-      <Input style={styles.textInput}/>
+      <Input
+        style={styles.textInput}
+        value={inputValue}
+        onChange={onInputChange}
+        onKeyUp={e => {
+          if (e.keyCode === 13) addTask()
+        }}
+      />
 
       <Fab
         color="primary"
         aria-label="Add"
         size="small"
         style={styles.button}
+        onClick={addTask}
       >
         <AddIcon />
       </Fab>
@@ -29,4 +39,9 @@ const styles = {
   button: { flexShrink: 0 }
 }
 
-export default TaskInput
+const mapStateToProps = state => {
+  const { inputValue } = state
+  return { inputValue }
+}
+
+export default connect(mapStateToProps, { addTask, onInputChange })(TaskInput)

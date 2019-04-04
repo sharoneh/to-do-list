@@ -5,8 +5,9 @@ import Body from '@material-ui/core/TableBody';
 import Cell from '@material-ui/core/TableCell';
 import Row from '@material-ui/core/TableRow';
 import Task from './Task';
+import { connect } from 'react-redux';
 
-const TableComponent = () => {
+const TableComponent = ({ tasks }) => {
   return (
     <Table>
       <Head>
@@ -19,7 +20,13 @@ const TableComponent = () => {
       </Head>
 
       <Body>
-        <Task>fazer portfolio</Task>
+        {tasks.map((task, index) => (
+          <Task
+            { ...task }
+            key={`task#${index}`}
+            index={index}
+          />
+        ))}
       </Body>
     </Table>
   )
@@ -29,4 +36,9 @@ const styles = {
   firstHeadCell: { padding: 0 }
 }
 
-export default TableComponent
+const mapStateToProps = state => {
+  const { tasks } = state
+  return { tasks }
+}
+
+export default connect(mapStateToProps, {})(TableComponent)

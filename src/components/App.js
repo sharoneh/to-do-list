@@ -4,28 +4,32 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Table from './Table';
 import TaskInput from './TaskInput';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 class App extends Component {
   render() {
     return (
-      <div
-        className="App"
-        style={styles.container}
-      >
-        <MuiThemeProvider theme={theme}>
-          <Paper style={styles.paper}>
-            <Typography
-              variant="h5"
-              component="h1"
-              style={styles.h1}
-            >to do list</Typography>
+      <Provider store={store}>
+        <div
+          className="App"
+          style={styles.container}
+        >
+          <MuiThemeProvider theme={theme}>
+            <Paper style={styles.paper}>
+              <Typography
+                variant="h5"
+                component="h1"
+                style={styles.h1}
+              >to do list</Typography>
+    
+              <TaskInput />
   
-            <TaskInput />
-
-            <Table />
-          </Paper>
-        </MuiThemeProvider>
-      </div>
+              <Table />
+            </Paper>
+          </MuiThemeProvider>
+        </div>
+      </Provider>
     );
   }
 }
