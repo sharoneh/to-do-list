@@ -6,6 +6,11 @@ import { addTask, onInputChange } from '../redux/AppReducer';
 import { connect } from 'react-redux';
 
 const TaskInput = ({ addTask, inputValue, onInputChange }) => {
+  const addValidTask = () => {
+    if (!inputValue) return
+    addTask()
+  }
+  
   return (
     <div style={styles.container}>
       <Input
@@ -13,7 +18,7 @@ const TaskInput = ({ addTask, inputValue, onInputChange }) => {
         value={inputValue}
         onChange={onInputChange}
         onKeyUp={e => {
-          if (e.keyCode === 13) addTask()
+          if (e.keyCode === 13) addValidTask()
         }}
       />
 
@@ -22,7 +27,7 @@ const TaskInput = ({ addTask, inputValue, onInputChange }) => {
         aria-label="Add"
         size="small"
         style={styles.button}
-        onClick={addTask}
+        onClick={() => addValidTask()}
       >
         <AddIcon />
       </Fab>
