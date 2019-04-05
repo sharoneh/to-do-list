@@ -8,7 +8,6 @@ const INITIAL_STATE = {
       description: 'fazer portfólio',
       date: new Date().toLocaleDateString('pt-BR'),
       time: new Date().toLocaleTimeString('pt-BR'),
-      location: 'São Paulo'
     }
   ],
   inputValue: ''

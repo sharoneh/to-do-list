@@ -10,14 +10,17 @@ import { connect } from 'react-redux';
 const TableComponent = ({ tasks }) => {
   return (
     <Table>
-      <Head>
-        <Row>
-          <Cell style={styles.firstHeadCell}></Cell>
-          <Cell>Task</Cell>
-          <Cell>Date/Time</Cell>
-          <Cell>Location</Cell>
-        </Row>
-      </Head>
+      {(tasks && tasks.length) ? (
+        <Head>
+          <Row>
+            <Cell style={styles.firstHeadCell}></Cell>
+            <Cell style={styles.taskCell}>Task</Cell>
+            <Cell style={styles.dateTimeCell}>Date</Cell>
+            <Cell style={styles.dateTimeCell}>Time</Cell>
+            <Cell style={styles.firstHeadCell}></Cell>
+          </Row>
+        </Head>
+      ) : null}
 
       <Body>
         {tasks.map((task, index) => (
@@ -33,7 +36,12 @@ const TableComponent = ({ tasks }) => {
 }
 
 const styles = {
-  firstHeadCell: { padding: 0 }
+  firstHeadCell: { padding: 0 },
+  taskCell: { paddingLeft: 4 },
+  dateTimeCell: {
+    paddingRight: 10,
+    width: 50
+  }
 }
 
 const mapStateToProps = state => {
