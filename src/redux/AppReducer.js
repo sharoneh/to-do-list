@@ -1,6 +1,7 @@
 const INPUT_CHANGE = 'INPUT_CHANGE'
 const ADD_TASK = 'ADD_TASK'
 const DELETE_TASK = 'DELETE_TASK'
+const COMPLETE_TASK = 'COMPLETE_TASK'
 
 const INITIAL_STATE = {
   tasks: [
@@ -8,6 +9,7 @@ const INITIAL_STATE = {
       description: 'fazer portfólio',
       date: new Date().toLocaleDateString('pt-BR'),
       time: new Date().toLocaleTimeString('pt-BR'),
+      complete: false
     }
   ],
   inputValue: ''
@@ -29,18 +31,48 @@ export default (state = INITIAL_STATE, action) => {
             description: state.inputValue,
             date: new Date().toLocaleDateString('pt-BR'),
             time: new Date().toLocaleTimeString('pt-BR'),
-            location: 'São Paulo'
+            complete: false
           }
         ],
         inputValue: ''
       }
     case DELETE_TASK:
+      let index = action.payload
+    
       return {
         ...state,
         tasks: [
-          ...state.tasks.slice(0, action.payload),
-          ...state.tasks.slice(action.payload + 1)
+          ...state.tasks.slice(0, index),
+          ...state.tasks.slice(index + 1)
         ]
+      }
+    case COMPLETE_TASK:
+      index = action.payload
+      let tasks = []
+
+      if (!state.tasks[index].complete) {
+        tasks = [
+          ...state.tasks.slice(0, index),
+          ...state.tasks.slice(index + 1),
+          {
+            ...state.tasks[index],
+            complete: !state.tasks[index].complete
+          }
+        ]
+      } else {
+          tasks = [
+            ...state.tasks.slice(0, index),
+            {
+              ...state.tasks[index],
+              complete: !state.tasks[index].complete
+            },
+            ...state.tasks.slice(index + 1)
+          ]
+      }
+
+      return {
+        ...state,
+        tasks
       }
     default:
       return state
@@ -65,6 +97,13 @@ export const addTask = () => {
 export const deleteTask = index => {
   return {
     type: DELETE_TASK,
+    payload: index
+  }
+}
+
+export const completeTask = index => {
+  return {
+    type: COMPLETE_TASK,
     payload: index
   }
 }
