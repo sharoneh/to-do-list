@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '@material-ui/core/Input';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { addTask, onInputChange } from '../redux/AppReducer';
+import { ADD_TASK, INPUT_CHANGE } from '../redux/AppReducer';
 import { connect } from 'react-redux';
 
 const TaskInput = ({ addTask, inputValue, onInputChange }) => {
@@ -49,4 +49,11 @@ const mapStateToProps = state => {
   return { inputValue }
 }
 
-export default connect(mapStateToProps, { addTask, onInputChange })(TaskInput)
+const mapDispatchToProps = dispatch => {
+  return {
+    addTask: () => dispatch({ type: ADD_TASK }),
+    onInputChange: e => dispatch({ type: INPUT_CHANGE, payload: e.target.value })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskInput)

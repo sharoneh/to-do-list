@@ -1,17 +1,12 @@
-const INPUT_CHANGE = 'INPUT_CHANGE'
-const ADD_TASK = 'ADD_TASK'
-const DELETE_TASK = 'DELETE_TASK'
-const COMPLETE_TASK = 'COMPLETE_TASK'
+export const INPUT_CHANGE = 'INPUT_CHANGE'
+export const ADD_TASK = 'ADD_TASK'
+export const DELETE_TASK = 'DELETE_TASK'
+export const COMPLETE_TASK = 'COMPLETE_TASK'
+export const APP_MOUNT = 'APP_MOUNT'
+export const SET_TASKS = 'SET_TASKS'
 
 const INITIAL_STATE = {
-  tasks: [
-    {
-      description: 'fazer portfólio',
-      date: new Date().toLocaleDateString('pt-BR'),
-      time: new Date().toLocaleTimeString('pt-BR'),
-      complete: false
-    }
-  ],
+  tasks: [],
   inputValue: ''
 }
 
@@ -26,13 +21,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tasks: [
-          ...state.tasks,
           {
             description: state.inputValue,
             date: new Date().toLocaleDateString('pt-BR'),
             time: new Date().toLocaleTimeString('pt-BR'),
             complete: false
-          }
+          },
+          ...state.tasks
         ],
         inputValue: ''
       }
@@ -74,36 +69,12 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         tasks
       }
+    case SET_TASKS:
+      return {
+        ...state,
+        tasks: action.payload
+      }
     default:
       return state
-  }
-}
-
-export const onInputChange = e => {
-  const text = e.target.value
-  
-  return {
-    type: INPUT_CHANGE,
-    payload: text
-  }
-}
-
-export const addTask = () => {
-  return {
-    type: ADD_TASK
-  }
-}
-
-export const deleteTask = index => {
-  return {
-    type: DELETE_TASK,
-    payload: index
-  }
-}
-
-export const completeTask = index => {
-  return {
-    type: COMPLETE_TASK,
-    payload: index
   }
 }

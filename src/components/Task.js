@@ -6,8 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import { connect } from 'react-redux';
-import { deleteTask, completeTask } from '../redux/AppReducer';
-
+import { DELETE_TASK, COMPLETE_TASK } from '../redux/AppReducer';
 
 const Task = ({ description, date, time, index, deleteTask, complete, completeTask }) => {
   const Text = ({ children }) => {
@@ -67,4 +66,11 @@ const styles = {
   description: { paddingLeft: 4 }
 }
 
-export default connect(null, { deleteTask, completeTask })(Task)
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteTask: index => dispatch({ type: DELETE_TASK, payload: index }),
+    completeTask: index => dispatch({ type: COMPLETE_TASK, payload: index })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Task)

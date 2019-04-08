@@ -4,32 +4,34 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Table from './Table';
 import TaskInput from './TaskInput';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
+import { connect } from 'react-redux';
+import { APP_MOUNT } from '../redux/AppReducer';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.appMount()
+  }
+
   render() {
     return (
-      <Provider store={store}>
-        <div
-          className="App"
-          style={styles.container}
-        >
-          <MuiThemeProvider theme={theme}>
-            <Paper style={styles.paper}>
-              <Typography
-                variant="h5"
-                component="h1"
-                style={styles.h1}
-              >to do list</Typography>
-    
-              <TaskInput />
+      <div
+        className="App"
+        style={styles.container}
+      >
+        <MuiThemeProvider theme={theme}>
+          <Paper style={styles.paper}>
+            <Typography
+              variant="h5"
+              component="h1"
+              style={styles.h1}
+            >to do list</Typography>
   
-              <Table />
-            </Paper>
-          </MuiThemeProvider>
-        </div>
-      </Provider>
+            <TaskInput />
+
+            <Table />
+          </Paper>
+        </MuiThemeProvider>
+      </div>
     );
   }
 }
@@ -63,4 +65,10 @@ const styles = {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    appMount: () => dispatch({ type: APP_MOUNT })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
