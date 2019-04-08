@@ -1,0 +1,29 @@
+.App {
+  background-color: #ececec;
+  padding: 5rem;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .paper {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 200;
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 1rem;
+
+    .paper {
+      min-width: unset;
+      width: 100%;
+    }
+  }
+}

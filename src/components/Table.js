@@ -6,6 +6,7 @@ import Cell from '@material-ui/core/TableCell';
 import Row from '@material-ui/core/TableRow';
 import Task from './Task';
 import { connect } from 'react-redux';
+import '../styles/table.scss';
 
 const TableComponent = ({ tasks }) => {
   return (
@@ -13,11 +14,11 @@ const TableComponent = ({ tasks }) => {
       {(tasks && tasks.length) ? (
         <Head>
           <Row>
-            <Cell style={styles.firstHeadCell}></Cell>
-            <Cell style={styles.taskCell}>Task</Cell>
-            <Cell style={styles.dateTimeCell}>Date</Cell>
-            <Cell style={styles.dateTimeCell}>Time</Cell>
-            <Cell style={styles.firstHeadCell}></Cell>
+            <Cell className="empty"></Cell>
+            <Cell className="task">Task</Cell>
+            <Cell className="date-time">Date</Cell>
+            <Cell className="date-time">Time</Cell>
+            <Cell className="empty"></Cell>
           </Row>
         </Head>
       ) : null}
@@ -33,15 +34,6 @@ const TableComponent = ({ tasks }) => {
       </Body>
     </Table>
   )
-}
-
-const styles = {
-  firstHeadCell: { padding: 0 },
-  taskCell: { paddingLeft: 4 },
-  dateTimeCell: {
-    paddingRight: 10,
-    width: 50
-  }
 }
 
 const mapStateToProps = state => {

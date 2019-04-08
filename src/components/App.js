@@ -6,7 +6,7 @@ import Table from './Table';
 import TaskInput from './TaskInput';
 import { connect } from 'react-redux';
 import { APP_MOUNT } from '../redux/AppReducer';
-
+import '../styles/App.scss';
 class App extends Component {
   componentDidMount() {
     this.props.appMount()
@@ -14,16 +14,12 @@ class App extends Component {
 
   render() {
     return (
-      <div
-        className="App"
-        style={styles.container}
-      >
+      <div className="App">
         <MuiThemeProvider theme={theme}>
-          <Paper style={styles.paper}>
+          <Paper className="paper">
             <Typography
               variant="h5"
               component="h1"
-              style={styles.h1}
             >to do list</Typography>
   
             <TaskInput />
@@ -42,28 +38,6 @@ const theme = createMuiTheme({
     useNextVariants: true
   }
 })
-
-const styles = {
-  container: {
-    backgroundColor: '#ececec',
-    padding: '5rem',
-    height: '100vh',
-    maxWidth: '100vw',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column'
-  },
-  paper: {
-    padding: 15,
-    minWidth: 500,
-    maxWidth: '100%'
-  },
-  h1: {
-    fontSize: 40,
-    fontWeight: 200,
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return {

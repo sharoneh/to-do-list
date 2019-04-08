@@ -1,0 +1,38 @@
+table {
+  th {
+    &:first-child, &:last-child {
+      padding: 0;
+    }
+
+    &.empty {
+      width: unset;
+    }
+  }
+
+  tr.task {
+    td {
+      &:first-child, &:last-child {
+        padding: 4px;
+      }
+
+      .close-btn {
+        transform: scale(.5);
+      }
+    }
+  }
+
+  th.date-time, td.date-time {
+    padding-right: 10px;
+    width: 50px;
+  }
+
+  th.task, td.task {
+    padding-left: 4px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    th.date-time, td.date-time {
+      display: none;
+    }
+  }
+}

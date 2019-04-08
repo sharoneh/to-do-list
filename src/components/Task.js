@@ -14,39 +14,39 @@ const Task = ({ description, date, time, index, deleteTask, complete, completeTa
       <Typography
         component="p"
         style={{
-          textDecoration: complete ? 'line-through' : 'none'
+          textDecoration: complete ? 'line-through' : 'none',
+          hyphens: 'auto'
         }}
       >{children}</Typography>
     )
   }
 
   return (
-    <Row>
-      <Cell style={styles.lessPadding}>
+    <Row className="task">
+      <Cell>
         <Checkbox
           color="primary"
-          style={styles.lessPadding}
           onChange={() => completeTask(index)}
           checked={complete}
         />
       </Cell>
 
-      <Cell style={styles.description}>
+      <Cell className="task">
         <Text>{description}</Text>
       </Cell>
 
-      <Cell style={styles.dateTimeCell}>
+      <Cell className="date-time">
         <Text>{date}</Text>
       </Cell>
    
-      <Cell style={styles.dateTimeCell}>
+      <Cell className="date-time">
         <Text>{time}</Text>
       </Cell>
 
-      <Cell style={styles.lessPadding}>
+      <Cell>
         <Fab
           size="small"
-          style={styles.closeBtn}
+          className="close-btn"
           onClick={() => deleteTask(index)}
         >
           <ClearIcon />
@@ -54,16 +54,6 @@ const Task = ({ description, date, time, index, deleteTask, complete, completeTa
       </Cell>
     </Row>
   )
-}
-
-const styles = {
-  lessPadding: { padding: 4 },
-  closeBtn: { transform: 'scale(.5)' },
-  dateTimeCell: {
-    paddingRight: 10,
-    width: 50
-  },
-  description: { paddingLeft: 4 }
 }
 
 const mapDispatchToProps = dispatch => {
