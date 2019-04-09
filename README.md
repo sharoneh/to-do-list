@@ -10,11 +10,7 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<<<<<<< HEAD
 ### `npm run build` or `yarn build`
-=======
-### `npm run build`
->>>>>>> be4553dd7ce9f645a81ac8a5bce0bc660980441e
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
