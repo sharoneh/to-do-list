@@ -18,6 +18,7 @@ export default (state = INITIAL_STATE, action) => {
         inputValue: action.payload
       }
     case ADD_TASK:
+      if (!state.inputValue) return { ...state }
       return {
         ...state,
         tasks: [
