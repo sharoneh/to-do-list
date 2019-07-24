@@ -1,4 +1,4 @@
-## My React Portfolio
+## Sharon's To Do List
 
 This project consists in a responsive to-do list web app. Its task list is persisted in the localStorage.
 It uses React, Redux and Redux Saga. For the styling, Material UI components and Sass.
